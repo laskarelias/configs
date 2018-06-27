@@ -1,0 +1,49 @@
+/* =[ ST ]================================================== */
+
+/* Terminal colors (16 first used in escape sequence) */
+static const char *colorname[] = {
+	/* 8 normal colors */
+  	[0] = "#383c4a", /* black   */
+	[1] = "#d52735", /* red     */
+	[2] = "#13c11e", /* green   */
+	[3] = "#fac536", /* yellow  */
+	[4] = "#5294e2", /* blue    */
+	[5] = "#935d8b", /* magenta */
+	[6] = "#32aa80", /* cyan    */
+	[7] = "#a4aab7", /* white   */
+
+ 	/* 8 bright colors */
+	[8]  = "#404552", /* black   */
+	[9]  = "#d52735", /* red     */
+	[10] = "#13c11e", /* green   */
+	[11] = "#fac536", /* yellow  */
+	[12] = "#5294e2", /* blue    */
+	[13] = "#935d8b", /* magenta */
+	[14] = "#32aa80", /* cyan    */
+	[15] = "#ffffff", /* white   */
+
+	[255] = 0,
+
+	/* more colors can be added after 255 to use with DefaultXX */
+	[256] = "#2f343f", /* background */
+  	[257] = "#d3dae3", /* foreground */
+};
+
+
+/*
+ * Default colors (colorname index)
+ * foreground, background, cursor, reverse cursor
+ */
+unsigned int defaultfg = 257;
+unsigned int defaultbg = 256;
+static unsigned int defaultcs = 257;
+static unsigned int defaultrcs = 256;
+
+/* =[ DWM ]================================================= */
+
+static const char normbordercolor[] = "#2f343f";
+static const char normbgcolor[]     = "#2f343f";
+static const char normfgcolor[]     = "#d3dae3";
+static const char selbordercolor[]  = "#5294e2";
+static const char selbgcolor[]      = "#5294e2";
+static const char selfgcolor[]      = "#ffffff";
