@@ -1,0 +1,2 @@
+# configs
+dwm / debian configs
