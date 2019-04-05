@@ -1,0 +1,101 @@
+Color
+{
+    BorderColor             "Black"
+    DefaultBackground       "LightGrey"
+    DefaultForeground       "Black"
+    TitleBackground         "LightGrey"
+    TitleForeground         "Black"
+    MenuTitleBackground     "DarkGrey"
+    MenuTitleForeground     "Black"
+    MenuBackground          "LightGrey"
+    MenuForeground          "Black"
+    MenuShadowColor         "Black"
+    MenuBorderColor         "Black"
+    IconManagerBackground   "LightGrey"
+    IconManagerForeground   "Black"
+#    IconManagerGeometry     "1366x24+0+742" 8
+    IconManagerGeometry     "1920x24+0+1054" 12
+}
+
+Pixmaps
+{
+    TitleHighlight  "vlines3"    
+}
+
+#MaxWindowSize "1366x717"
+MaxWindowSize "1920x1029"
+IconifyByUnmapping
+BorderWidth 2           # Number of pixels for border around entire window
+FramePadding 3          # Number of pixels between titlebar buttons & frame
+TitleButtonBorderWidth 0    # Number of pixels for button border
+TitlePadding 5          # Number of pixels around title buttons
+ButtonIndent 0          # Larger seems to squash buttons together
+MenuBorderWidth 1       # Number of pixels for menu border
+NoDefaults
+NoGrabServer
+NoHighlight
+DontMoveOff
+AutoRelativeResize
+OpaqueMove
+ShowIconManager
+RandomPlacement
+
+NoTitle
+{
+    "TWM Icon Manager"        
+}
+
+IconDirectory "~/.twm/icons" # Directory for non default icons
+LeftTitleButton  "close.xbm"=f.delete
+LeftTitleButton  "raiselower.xbm"=f.raiselower
+LeftTitleButton  "menu.xbm"=f.menu "WindowMenu"
+RightTitleButton "minimize.xbm"=f.iconify
+RightTitleButton "maximize.xbm"=f.fullzoom
+RightTitleButton "resize.xbm"=f.resize
+
+# The root window actions i.e. clicking on the backgound
+Button1 = : root : f.menu "RootMenu"
+Button3 = : root : f.menu "TwmWindows"
+
+# Left click the window title to lower / raise + gain focus or move
+Movedelta 1
+Button1=	:title: f.function "raise-lower-move"
+Function "raise-lower-move" { f.move f.raiselower }
+
+
+Button1 = m : window : f.move
+
+Function "winup" { f.circleup }
+"Tab" = m : root|window|frame|title : f.function "winup"
+
+Button1 = : iconmgr : f.iconify
+Button1 = : icon : f.function "move-or-iconify"
+Function "move-or-iconify" { f.move f.deltastop f.iconify }
+
+
+
+DefaultFunction f.nop
+
+menu "RootMenu"
+{
+"Twm"   f.title
+"st"            f.exec "exec st-light &"
+"Opera"         f.exec "exec opera &"
+"Run..."        f.exec "dmenu_run &"
+""              f.nop
+"Kill"          f.destroy
+"Restart"       f.restart
+"Exit"          f.quit
+}
+
+menu "WindowMenu"
+{
+    "Menu"      f.title
+    "Kill"      f.delete
+    "Minimize"  f.iconify
+    "Maximize"  f.fullzoom
+    ""          f.nop
+    "Move"      f.move
+    "Lower"     f.lower
+    "Raise"     f.raise
+}
